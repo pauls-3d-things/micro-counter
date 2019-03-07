@@ -16,13 +16,15 @@ public class MicroCounterController {
         counter++;
 
         long uptime = System.currentTimeMillis() - startup;
+        long s = (uptime / 1000) % 60;
+        long m = (uptime / 1000 / 60) % 60;
+        long h = (uptime / 1000 / 60 / 60) % 60;
+        long d = (uptime / 1000 / 60 / 60 / 24);
 
         String result = "";
-
         result += "<html><body>";
         result += "<br>Hits: <b>" + counter + "</b>";
-        result += String.format("<br>Uptime: <b>%d d %d h %d m %d s</b>", uptime / 1000 / 60 / 60 / 24, uptime / 1000 / 60 / 60,
-                uptime / 1000 / 60, uptime / 1000);
+        result += String.format("<br>Uptime: <b>%d d %d h %d m %d s</b>", d, h, m, s);
         result += "<br>More cool projects: <a href=\"https://p3dt.net\" target=\"blank\">p3dt.net</a>";
         result += "<br>Fork this: <a href=\"https://github.com/pauls-3d-things/micro-counter\" target=\"blank\">github.com/pauls-3d-things/micro-counter</a>";
         result += "</body> </html>";
